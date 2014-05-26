@@ -1,0 +1,25 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id112599439">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:int" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="typeid"/>
+              <xs:element type="xs:int" name="parentid"/>
+              <xs:element type="xs:string" name="parentcn"/>
+              <xs:element type="xs:string" name="flagged"/>
+              <xs:element type="xs:dateTime" name="created"/>
+              <xs:element type="xs:dateTime" name="viewed"/>
+              <xs:element type="xs:dateTime" name="updated"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:byte" name="count"/>
+        <xs:element type="xs:string" name="status"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

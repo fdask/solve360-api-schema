@@ -1,5 +1,7 @@
 {
+   "$schema": "http://json-schema.org/draft-04/schema#",
 	"title": "Contact Schema",
+	"description": "A single contact record from the solve360 API",
 	"type": "object",
 	"properties": {
 		"created": { "$ref": "date-string.schema.json" },

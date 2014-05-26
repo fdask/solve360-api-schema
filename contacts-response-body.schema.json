@@ -1,0 +1,16 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "title": "List Contacts Request Body Schema",
+   "description": "Schema outlining the JSON data that can be passed to the solve360 API when requesting a list of contacts at the /contacts endpoint.",
+   "type": "object",
+   "properties": {
+		"\d+": { "$ref": "contact.schema.json" },
+		"count": {
+			"type": "integer",
+			"description": "The number of contact records found/returned"
+		},
+		"status": {
+			"type": "string"
+		}
+	}
+}

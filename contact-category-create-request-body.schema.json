@@ -1,0 +1,12 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "title": "Create category request body"
+   "description": "Schema outlining the JSON data that can be passed when creating a new category via the /contacts/categories endpoint",
+   "type": "object",
+	"properties": {
+		"name": {
+			"type": "string"
+			"description": "The category name you want to create"
+		}
+	}
+}

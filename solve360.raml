@@ -46,6 +46,25 @@ version: v1
 								 "count": 2,
 								 "status": "success"
 							}
+					text/xml:
+						schema: !include contacts-response-body.xsd
+						example: |
+							<?xml version="1.0" encoding="utf-8"?>
+							<response>
+								<id112599439>
+									<id>112599439</id>
+									<name/>
+									<typeid>1</typeid>
+									<parentid>112528865</parentid>
+									<parentcn>James Wallace</parentcn>
+									<flagged/>
+									<created>2014-05-26T16:41:56+00:00</created>
+									<viewed>2014-05-26T16:41:56+00:00</viewed>
+									<updated>2014-05-26T16:41:56+00:00</updated>
+								</id112599439>
+								<count>1</count>
+								<status>success</status>
+							</response>
    post:
 		description: Creates a new contact
 		body:
@@ -177,19 +196,29 @@ version: v1
 			description: Creates a category tag
 			body:
 				application/json:
+					schema: !include contact-category-create-request-body.schema.json
 					example: |
 						{
 							"name": "Category Name"
 						}
+				text/xml:
+					schema: !include contact-category-create-request-body.xsd
+					example: |
+						<?xml version="1.0" encoding="utf-8"?><request><name>A New Category</name></request>
 			responses:
 				200:
 					body:
 						application/json:
+							schema: !include contact-category-create-response-body.schema.json
 							example: |
 								{
 								 "id": 112564079,
 								 "status": "success"
 								}
+						text/xml:
+							schema: !include contact-category-create-response-body.xsd
+							example: |
+								<?xml version="1.0" encoding="utf-8"?><response><id>112600353</id><status>success</status></response>
    /fields:
 		get:
 			description: Returns a collection of available contact fields
@@ -197,6 +226,7 @@ version: v1
 				200:
 					body:
 						application/json:
+							schema:
 							example: |
 								{
 								 "fields": [
@@ -219,6 +249,9 @@ version: v1
 								 ],
 								 "status": "success"
 								}
+						text/xml:
+							schema: !include contacts-fields-response.xsd
+							example: !include contacts-fields-response.example.xml
    /call:
 		post:
 			description: Create a new call activity linked to a contact
