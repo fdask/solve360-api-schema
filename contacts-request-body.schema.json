@@ -1,0 +1,66 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "title": "List Contacts Request Body Schema",
+   "description": "Schema outlining the JSON data that can be passed to the solve360 API when requesting a list of contacts at the /contacts endpoint.",
+   "type": "object",
+   "properties": {
+      "layout": {
+         "description": "Output summary fields, or all fields",
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 1
+      },
+      "fieldslist": {
+         "description": "When layout is 1, put the field names you want listed here seperated by commas"
+         "type": "string"
+      },
+      "categories": {
+			"description": "Output categories with layout = 1",
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 1,
+      },
+		"filtermode": {
+			"description": "Primary search context",
+			"type": "string",
+			"enum": [ "flagged", "assigned", "nocategory", "viewed", "created", "updated", "notviewed", "notupdated", "duetoday", "duesoon", "tasksoverdue", "owner", "category", "archived", "unsent", "byphone", "byemail" ]
+		},
+		"filtervalue": {
+			"description": "",
+			"type": "string"
+		},
+		"special": {
+			"description": "Result must match any specified categories, or all specified categories",
+			"enum": [ "AND", "OR" ]
+		},
+		"searchmode": {
+			"description": "Subfilter search context, S = field starts with, C = field contains, E = field is empty, N = field is not empty",
+			"enum": [ "Sany", "Cany", "Canyitem", "Sanyitem", "Canyjournal", "Sanyjournal", "C{fieldId}", "S{fieldId}", "E{fieldId}", "N{fieldId}" ]
+		},
+		"searchvalue": {
+			"description": "",
+			"type": "string"
+		},
+		"limit": {
+			"description": "How many contacts to display per page",
+			"type": "integer",
+			"default": 50,
+			"minimum": 1
+			"maximum": 5000
+		},
+		"start": {
+			"description": "Record to start from - zero based",
+			"type": "integer",
+			"minimum": 0
+		},
+		"sortfield": {
+			"description": "Which field is used for sorting",
+			"enum": [ "name", "created", "flagged", "update_time" ] 
+		},
+		"sortdir": {
+			"description": "Sort direction",
+			"enum": [ "ASC", "DESC" ]
+		}
+   },
+   "required": []
+}

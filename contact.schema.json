@@ -1,0 +1,29 @@
+{
+	"title": "Contact Schema",
+	"type": "object",
+	"properties": {
+		"created": { "$ref": "date-string.schema.json" },
+		"flagged": {
+			"type": "boolean"
+		},
+		"id": {
+			"type": "integer"
+		},
+		"name": {
+			"description": "contacts first and last name",
+			"type": "string"
+		},
+		"parentcn": {
+			"type": "string"
+		},
+		"parentid": {
+			"type": "integer"	
+		},
+		"typeid": {
+			"type": "integer"
+		},
+		"updated": { "$ref": "date-string.schema.json" },
+		"viewed": { "$ref": "date-string.schema.json" }
+	},
+	"required": []
+}

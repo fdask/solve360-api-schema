@@ -1,0 +1,365 @@
+#%RAML 0.8
+---
+title: Solve360 API
+baseUri: http://secure.solve360.com
+version: v1
+
+/contacts:
+	displayName: Contacts
+   queryParameters:
+      callback:
+         displayName:
+         type:
+         description: causes data to be returned in JSONP format
+         example:
+         required: false
+   get:
+		description: Returns all contacts
+		responses:
+			200:
+				body:
+					application/json:
+						example: |
+							{
+								 "112531525": {
+									  "created": "2014-05-23T23:42:05+00:00",
+									  "flagged": false,
+									  "id": 112531525,
+									  "name": "Aaron",
+									  "parentcn": "James Wallace",
+									  "parentid": 112528865,
+									  "typeid": 1,
+									  "updated": "2014-05-23T23:42:05+00:00",
+									  "viewed": "2014-05-23T23:42:05+00:00"
+								 },
+								 "112545765": {
+									  "created": "2014-05-24T07:47:08+00:00",
+									  "flagged": false,
+									  "id": 112545765,
+									  "name": null,
+									  "parentcn": "James Wallace",
+									  "parentid": 112528865,
+									  "typeid": 1,
+									  "updated": "2014-05-24T07:47:08+00:00",
+									  "viewed": "2014-05-24T07:47:08+00:00"
+								 },
+								 "count": 2,
+								 "status": "success"
+							}
+   post:
+		description: Creates a new contact
+		body:
+			application/json:
+				schema: !
+				example: | {}
+		responses:
+			200:
+				body:
+					application/json:
+						example: |
+							{
+								 "activities": [],
+								 "categories": [],
+								 "item": {
+									  "created": "2014-05-23T23:42:05+00:00",
+									  "fields": {
+											"businessemail": "",
+											"creatordate": 1400888508,
+											"creatorid": 112528865,
+											"creatorname": "James Wallace",
+											"firstname": "Aaron",
+											"lastname": "",
+											"modificatordate": 1400888508,
+											"modificatorid": 112528865,
+											"modificatorname": "James Wallace",
+											"personalemail": ""
+									  },
+									  "flagged": false,
+									  "id": 112531525,
+									  "name": "Aaron",
+									  "ownership": 112528865,
+									  "typeid": 1,
+									  "updated": "2014-05-23T23:42:05+00:00",
+									  "viewed": "2014-05-23T23:42:05+00:00"
+								 },
+								 "relateditems": [],
+								 "status": "success"
+							}
+
+   /{contactId}:
+		displayName: Contact
+		uriParameters:
+			contactId:
+				displayName: Contact ID
+				type: integer
+      get:
+			description: Returns a collection of contacts that match the requested criteria
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									 "activities": [],
+									 "categories": [],
+									 "item": {
+										  "created": "2014-05-23T23:42:05+00:00",
+										  "fields": {
+												"businessemail": "",
+												"creatordate": 1400888508,
+												"creatorid": 112528865,
+												"creatorname": "James Wallace",
+												"firstname": "Aaron",
+												"lastname": "",
+												"modificatordate": 1400888508,
+												"modificatorid": 112528865,
+												"modificatorname": "James Wallace",
+												"personalemail": ""
+										  },
+										  "flagged": false,
+										  "id": 112531525,
+										  "name": "Aaron",
+										  "ownership": 112528865,
+										  "typeid": 1,
+										  "updated": "2014-05-23T23:42:05+00:00",
+										  "viewed": "2014-05-23T23:42:05+00:00"
+									 },
+									 "relateditems": [],
+									 "status": "success"
+								}
+      put:
+			description: Updates an existing contact
+			body:
+				application/json:
+					example: | {}
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									 "status": "success"
+								}
+      delete:
+			description: Deletes a contact
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									 "status": "success"
+								}
+   /categories:
+		get:
+			description: Returns a collection of available contact tags
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									 "categories": [
+										  {
+												"color": "5",
+												"id": 112545848,
+												"name": "Cheeses"
+										  },
+										  {
+												"color": "2",
+												"id": 112545849,
+												"name": "Second Category"
+										  }
+									 ],
+									 "status": "success"
+								}
+		post:
+			description: Creates a category tag
+			body:
+				application/json:
+					example: |
+						{
+							"name": "Category Name"
+						}
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+								 "id": 112564079,
+								 "status": "success"
+								}
+   /fields:
+		get:
+			description: Returns a collection of available contact fields
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+								 "fields": [
+								  {
+									"id": 13596861,
+									"name": "firstname",
+									"label": "First Name",
+									"type": null,
+									"column": 1,
+									"position": 1
+								  },
+								  {
+									"id": 13596862,
+									"name": "lastname",
+									"label": "Last Name",
+									"type": null,
+									"column": 1,
+									"position": 2
+								  },
+								 ],
+								 "status": "success"
+								}
+   /call:
+		post:
+			description: Create a new call activity linked to a contact
+			body: 
+				application/json:
+					example: |
+						{
+							"parent": 112531525,
+							"data": {
+								"details": "Test Call", 
+								"dateoccured": "2014-05-07 11:11:00",
+								"duration": 37
+							}
+						}
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+								 "id": 112564202,
+								 "data": {
+								  "duration": "37",
+								  "dateoccured": "2014-05-07T11:11:00+00:00",
+								  "details": "Test Call"
+								 },
+								 "created": "2014-05-25T18:33:21+00:00",
+								 "status": "success"
+								}
+            403:
+		/comment:
+			post:
+				description: Add a comment activity to the contact
+				body:
+					application/json:
+						example: |
+							{
+							"parent": 112564202,
+							"data": {
+								"posttext": "This is a comment!"
+							}
+				responses:
+					200:
+						body:
+							application/json:
+								example: |
+									{
+									 "id": 112569661,
+									 "data": {
+									  "postuser": "112528865",
+									  "postdate": "2014-05-26 00:16:25",
+									  "posttext": "This is a comment!",
+									  "postuser_cn": "James Wallace"
+									 },
+									 "created": "2014-05-26T00:16:25+00:00",
+									 "status": "success"
+									}
+	/event:
+		post:
+			description: Creates a new event linked to a contact
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+								 "id": 112569644,
+								 "data": {
+								  "completed": "0",
+								  "priority": "0",
+								  "eventtype": "keep",
+								  "externalattendees": "",
+								  "attendees": "",
+								  "timeend": "2014-05-06T17:00:00+00:00",
+								  "timestart": "2014-05-05T15:00:00+00:00",
+								  "attendees_cn": ""
+								 },
+								 "created": "2014-05-26T00:14:22+00:00",
+								 "status": "success"
+								}
+				403:
+	/note:
+		post:
+			description: Creates a new note linked to a contact
+			body:
+				application/json:
+					example: |
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+   /{activitySegmentName}:
+      post:
+			description: Creates a new activity linked to a parent item
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+      /{activityId}:
+         put:
+				description: Updates an activity related to a contact
+				responses:
+					200:
+						body:
+							application/json:
+								example: |
+         delete:
+				description: Deletes an activity related to a contact
+				responses:
+					200:
+						body:
+							application/json:
+								example: |
+
+/ownership:
+   get:
+		description: Returns a collection of available users and workgroups
+		responses:
+			200:
+				body:
+					application/json:
+						example: |
+							{
+							 "users": [
+							  {
+								"id": 112528865,
+								"name": "James Wallace",
+								"email": "sausages@gmail.com",
+								"preventlogin": "0",
+								"preventprivatedata": "0",
+								"administrator": "1"
+							  }
+							 ],
+							 "groups": [
+							  {
+								"id": 112528866,
+								"name": "ffff",
+								"email": "ffff@ffff.solve360.com"
+							  }
+							 ],
+							 "status": "success"
+							}
